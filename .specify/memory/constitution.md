@@ -1,50 +1,32 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Divisor de Cuenta Web Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. CALIDAD DE CÓDIGO (SOLID)
+El código debe respetar estrictamente los principios SOLID:
+- **SRP (Single Responsibility Principle):** Una función o módulo, una razón de cambio. El cálculo no valida ni formatea.
+- **OCP (Open/Closed Principle):** Agregar una nueva regla de redondeo no obliga a editar los módulos que ya existen.
+- **LSP (Liskov Substitution Principle):** Cualquier implementación de la interfaz de redondeo puede sustituir a otra sin que quien la usa pregunte de qué tipo es (sin `instanceof`, `typeof` ni comprobaciones de tipo).
+- **ISP (Interface Segregation Principle):** Interfaces pequeñas; nadie depende de funciones que no usa (contrato de una sola función `aplicar(valor)`).
+- **DIP (Dependency Inversion Principle):** `presentation` depende de abstracciones de `domain`, nunca de implementaciones concretas de `data`.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. ARQUITECTURA LIMPIA Y CAPAS
+- **Capas:** Separación explícita en `src/presentation`, `src/domain` y `src/data`.
+- **Regla de dependencia:** `presentation -> domain <- data`.
+- **Pureza de dominio:** `src/domain/` NO importa `react` ni nada del DOM: es JavaScript puro.
+- **Punto único de composición:** `src/main.jsx` es el ÚNICO lugar donde se instancian implementaciones concretas.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. SEGURIDAD
+- Nunca guardar secretos ni API keys en el repositorio.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. CALIDAD Y PRUEBAS
+- Toda funcionalidad crítica tiene pruebas.
+- Los criterios de aceptación de la spec se convierten en pruebas ejecutables verificables.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. REGLA DE LA MATERIA
+- Toda función generada por el agente debe poder explicarla el estudiante: qué hace, por qué existe, qué recibe, qué devuelve y qué errores produce.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+La Constitución es la ley suprema del proyecto y prevalece sobre cualquier sugerencia o atajo de código. Cualquier violación a SOLID o a la separación de capas invalidará la solución.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-10-09
